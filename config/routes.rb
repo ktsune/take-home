@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   get '/:id' => 'short_links#show'
   resources :short_links, only: [:show]
 
-  get '/:id' => 'short_links#create'
+  post '/:id' => 'short_links#create'
   resources :short_links, only: [:create]
 end

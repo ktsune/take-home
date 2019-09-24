@@ -2,7 +2,7 @@ class ShortLinksController < ApplicationController
   before_action :set_short_link, only: :show
 
   def show
-    redirect_to @short_link.long_link, status: :moved_permanently
+    redirect_to @short_link.redirect_link, status: :moved_permanently
   end
 
   def create
@@ -21,8 +21,8 @@ class ShortLinksController < ApplicationController
       if existing
         short_link = existing
       else
-        short_link = ShortLink.create(
-          user_id: params[:user_id], long_link: params[:long_link], digest: digest
+        short_link = ShortLink.create!(
+          user_id: params[:id], long_link: params[:long_link], digest: digest
         )
       end
       render status: :created, json: {

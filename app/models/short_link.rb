@@ -18,7 +18,11 @@ class ShortLink < ApplicationRecord
   end
 
   def encoded_id
-    id
+    object_id
+  end
+
+  def redirect_link
+    long_link.start_with?("http") ? long_link : "http://#{long_link}"
   end
 
   def self.digest(long_link)
